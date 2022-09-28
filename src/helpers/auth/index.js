@@ -7,3 +7,12 @@ export const generatePassword = async plaintext => {
     return null;
   }
 };
+
+export const getBearerToken = token => {
+  if (token.startsWith('Bearer ')) {
+    const trunc = token.substring(7, token.length);
+    return trunc;
+  } else {
+    return;
+  }
+};

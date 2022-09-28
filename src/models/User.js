@@ -43,7 +43,14 @@ module.exports = (sequelize, DataTypes) => {
 
     async generateAuthToken() {
       let token = jwt
-        .sign({ _id: this.user_id, access: 'auth' }, process.env.JWT_SECRET)
+        .sign(
+          {
+            _id: this.user_id,
+            access: 'auth',
+            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+          },
+          process.env.JWT_SECRET
+        )
         .toString();
       let session = await sequelize.models.SessionKey.create({
         token: token,
