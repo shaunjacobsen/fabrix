@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Image, { foreignKey: 'image_id', targetKey: 'image_id' });
     }
 
     static async findByCredentials(email, password) {
@@ -36,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
           });
         })
         .catch(e => {
-          console.log('errah', e);
           return e;
         });
     }

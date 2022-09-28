@@ -1,37 +1,38 @@
+const { Image, SessionKey, User } = require('../models/');
+
 const authenticate = (req, res, next) => {
   const token = req.header('x-auth');
 
-  models.session_key
-    .findOne({
-      where: {
-        token: token,
-      },
-    })
-    .then((result) => {
+  SessionKey.findOne({
+    where: {
+      token: token,
+    },
+  })
+    .then(result => {
       if (!result) {
         return Promise.reject();
       }
 
-      return models.user
-        .findById(result.user_id, {
-          attributes: ['email', 'first_name', 'last_name', 'profile_id', 'role'],
+      return User
+        .findByPk(result.user_id, {
+          attributes: ['email', 'first_name', 'last_name', 'user_id', 'role'],
           include: [
             {
-              model: models.image,
+              model: Image,
               attributes: ['secure_url'],
             },
           ],
         })
-        .then((user) => {
+        .then(user => {
           req.user = user;
-          req.user._id = user.profile_id;
+          req.user._id = user.user_id;
           req.token = token;
 
           next();
         });
     })
-    .catch((err) => {
-      res.status(401).send(err);
+    .catch(err => {
+      res.status(401).json({ error: err.message });
     });
 };
 
