@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Unit.init(
     {
+      unit_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       supplier_id: DataTypes.INTEGER,
       fabric_id: DataTypes.INTEGER,
       order_id: DataTypes.INTEGER,

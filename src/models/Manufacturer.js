@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Manufacturer.init(
     {
-      manufacturer_id: DataTypes.INTEGER,
+      manufacturer_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       name: DataTypes.STRING,
       country: DataTypes.STRING,
       notes: DataTypes.STRING,

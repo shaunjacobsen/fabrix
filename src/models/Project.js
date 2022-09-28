@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Project.init(
     {
-      project_id: DataTypes.INTEGER,
+      project_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       external_order_id: DataTypes.STRING,
       external_order_source: DataTypes.STRING,
       user_id: DataTypes.INTEGER,

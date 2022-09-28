@@ -1,8 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class Pull extends Model {
+  class SessionKey extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,18 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Pull.init(
+  SessionKey.init(
     {
-      pull_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-      unit_id: DataTypes.STRING,
-      project_id: DataTypes.STRING,
-      notes: DataTypes.TEXT,
-      created_by: DataTypes.INTEGER,
+      session_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      token: DataTypes.STRING,
+      user_id: DataTypes.INTEGER,
+      expires: DataTypes.TIME,
+      valid: DataTypes.BOOLEAN,
     },
     {
       sequelize,
-      modelName: 'Pull',
+      modelName: 'SessionKey',
     }
   );
-  return Pull;
+  return SessionKey;
 };

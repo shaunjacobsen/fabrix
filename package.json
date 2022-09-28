@@ -5,8 +5,13 @@
   "author": "Shaun Jacobsen",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "express": "^4.17.2",
+    "helmet": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mysql2": "^2.3.3",
     "pg": "^8.8.0",
     "sequelize": "^6.23.1",
     "uuid": "^9.0.0"
